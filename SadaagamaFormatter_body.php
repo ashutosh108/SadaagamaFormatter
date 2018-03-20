@@ -8,9 +8,21 @@ class SadaagamaFormatter {
         $parser->setHook( 'jayatiirtha', 'SadaagamaFormatter::onJayatiirthaTag' );
     }
 
-    public static function onMuulamTag( $input, array $args, Parser $parser, PPFrame $frame) {
+    private static function identity($text) {
+        return $text;
+    }
+
+    private static function div($class, $input, $frame, $parser, $transform=null) {
         $rendered_input = $parser->recursiveTagParse( $input, $frame );
-        return "<div class=\"muulam\">" . $rendered_input . "</div>";
+        if ($transform) {
+            $rendered_input = $transform($rendered_input);
+        }
+        return "<div class=\"$class\">" . $rendered_input . "</div>";
+
+    }
+
+    public static function onMuulamTag( $input, array $args, Parser $parser, PPFrame $frame) {
+        return self::div("muulam", $input, $frame, $parser );
     }
 
     private static function append_brs_after_dandas( $wiki_text ) {
@@ -18,19 +30,20 @@ class SadaagamaFormatter {
     }
 
     public static function onShlokaTag( $input, array $args, Parser $parser, PPFrame $frame) {
-        $rendered_input = $parser->recursiveTagParse( $input, $frame );
-        $with_dandas = self::append_brs_after_dandas($rendered_input);
-        return "<div class=\"shloka\">" . $with_dandas . "</div>";
+        return self::div("shloka", $input, $frame, $parser, 'SadaagamaFormatter::append_brs_after_dandas');
+    }
+
+    private static function fix_stars($text) {
+        return preg_replace('{\*(?=\S)(.*?)(?<=\S)\*}', '<q>$1</q>', $text);
     }
 
     public static function onMadhvaTag( $input, array $args, Parser $parser, PPFrame $frame) {
-        $rendered_input = $parser->recursiveTagParse( $input, $frame );
-        return "<div class=\"commentary by-madhva\">" . $rendered_input . "</div>";
+        return self::div("commentary by-madhva", $input, $frame, $parser, 'SadaagamaFormatter::fix_stars');
     }
 
     public static function onJayatiirthaTag( $input, array $args, Parser $parser, PPFrame $frame) {
         $rendered_input = $parser->recursiveTagParse( $input, $frame );
-        return "<div class=\"commentary by-jayatiirtha\">" . $rendered_input . "</div>";
+        return self::div("commentary by-jayatiirtha", $input, $frame, $parser, 'SadaagamaFormatter::fix_stars');
     }
 
 }
