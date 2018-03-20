@@ -1,0 +1,13 @@
+{
+    "name": "SadaagamaFormatter",
+    "description": "Custom tags parser user for aagamas on https://tatvavadi.ru/sadaagama/",
+    "author": "Ashutosha",
+    "type": "parserhook",
+    "AutoloadClasses": {
+        "SadaagamaFormatter": "SadaagamaFormatter_body.php"
+    },
+    "Hooks": {
+        "ParserFirstCallInit": "SadaagamaFormatter::onParserSetup"
+    },
+	"manifest_version": 2
+}
