@@ -2,38 +2,4 @@
 
 Щрӣмад-Āчāрйа принимает это правило лишь отчасти — в том, что касается удвоенія согласных послѣ репӿа, но не послѣ ха-кāра. В первом случаѣ вводится исключеніе: «рьте ба-бӿāбӿйāм̇ вāч‿ча», удвоеніе не распространяется на «ба», «бӿа» и «ва». Тѣм самым правильным будет не सर्व्वम्, но सर्वम्; не अर्ब्बुदम्, но अर्बुदम्; не गर्ब्भः, но गर्भः; не ब्रह्म्मा, वह्न्निः, जाह्न्नवी, но ब्रह्मा, वह्निः, जाह्नवी. Также принимается Пāн̣иніево исключеніе из сӯтра 8.4.49 «щаро‿ɐчи»: не удваиваются «ща», «ша» и «са», когда за ними слѣдует гласный, что дает нам, напримѣр, सुदर्शनः, कर्षति и т.д.»
 
-var vwl = /(?:a|A|i|I|u|U|~r|~R|~l|~L|e|ai|o|au)/;
-var cns = /(?:k|kh|g|gh|~N|ch|chh|j|jh|~n|T|Th|D|Dh|N|t|th|d|dh|n|p|ph|b|bh|m|y|r|l|v|sh|Sh|s|h|L)/;
-var cns_no_hbbhv = /(?:k|kh|g|gh|~N|ch|chh|j|jh|~n|T|Th|D|Dh|N|t|th|d|dh|n|p|ph|m|y|r|l|sh|Sh|s|L)/;
-var cns_dbl = /(?:kk|kkh|gg|ggh|~N~N|chch|chchh|jj|jjh|~n~n|TT|TTh|DD|DDg|NN|tt|tth|dd|ddh|nn|pp|pph|mm|yy|rr|ll|shsh|ShSh|ss|LL)/;
-
-var mahaaprana_pairs = /(?:kh|gh|chh|jh|Th|Dh|th|dh|ph)/;
-
-
-$vowel
-[rh]
-(?!>(sh|Sh|s)$vowel)
-($consonant_no_hbbhv)($1)
-
-"arkaH", "arkkaH",
-"svargaH", "svarggaH",
-"pArthaH", "pArtthaH",
-"karma", "karmma",
-"sUryaH", "sUryyaH",
-"durlabhaH", "durllabhaH",
-"sarvam", "sarvvama",
-"brahmA", "brahmmA",
-"vahniH", "vahnniH",
-"jAhnavI", "jAhnnavI.",
-
-"sarvvam", "sarvam",
-"arbbudam", "arbudam",
-"garbbhaH", "garbhaH",
-"brahmmA", "brahmA",
-"vahnniH", "vahniH",
-"jAhnnavI", "jAhnavI",
-
-Также принимается Пāн̣иніево исключеніе из сӯтра 8.4.49 «щаро‿ɐчи»: не удваиваются «ща», «ша» и «са», когда за ними слѣдует гласный, что дает нам, напримѣр, सुदर्शनः, कर्षति и т.д.»
-
-"सुदर्शनः", "सुदर्शनः",
-"कर्षति", "कर्षति",
+/((?:a|A|i|I|u|U|~r|~R|~l|~L|e|ai|o|au)r)(?!(?:kk|kkh|gg|ggh|~N~N|chch|chchh|jj|jjh|~n~n|TT|TTh|DD|DDh|NN|tt|tth|dd|ddh|nn|pp|pph|mm|yy|rr|ll|shsh|ShSh|ss|LL))(?!(?:sh|Sh|s)(?:a|A|i|I|u|U|~r|~R|~l|~L|e|ai|o|au))((?:k|kh|g|gh|~N|ch|chh|j|jh|~n|T|Th|D|Dh|N|t|th|d|dh|n|p|ph|m|y|r|l|sh|Sh|s|L))/
