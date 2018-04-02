@@ -26,7 +26,7 @@ describe('double_consonants', function() {
             assert.equal(b, dbl(a));
         });
         if (a !== b) {
-            it(a + ' => ' + b, function() {
+            it(b + ' => ' + b, function() {
                 assert.equal(b, dbl(b));
             });
         }
