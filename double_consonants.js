@@ -1,25 +1,37 @@
 function double_consonants(string) {
     var vowel = /(?:a|A|i|I|u|U|~r|~R|~l|~L|e|ai|o|au)/;
-    var cns = /(?:k|kh|g|gh|~N|ch|chh|j|jh|~n|T|Th|D|Dh|N|t|th|d|dh|n|p|ph|b|bh|m|y|r|l|v|sh|Sh|s|h|L)/;
-    var consonant_no_hbbhv = /(?:k|kh|g|gh|~N|ch|chh|j|jh|~n|T|Th|D|Dh|N|t|th|d|dh|n|p|ph|m|y|r|l|sh|Sh|s|L)/;
-    var cns_dbl = /(?:kk|kkh|gg|ggh|~N~N|chch|chchh|jj|jjh|~n~n|TT|TTh|DD|DDh|NN|tt|tth|dd|ddh|nn|pp|pph|mm|yy|rr|ll|shsh|ShSh|ss|LL)/;
-
-    var mahaaprana_pairs = /(?:kh|gh|chh|jh|Th|Dh|th|dh|ph)/;
-    regexp = new RegExp(
+    var alpaprana_no_sshShhbbhv = /(k|g|~N|ch|j|~n|T|D|N|t|d|n|p|m|y|r|l|L)/;
+    var mahaprana_no_sshShhbbhv = /(k|g|ch|j|T|D|t|d|p)h/;
+    regexp_alpa = new RegExp(
         '('
             +vowel.source
             +'r'
         +')'
-        +'(?!'+cns_dbl.source+')'
-        +'(?!(?:sh|Sh|s)' + vowel.source + ')'
+
+        +alpaprana_no_sshShhbbhv.source
 
         +'('
-        +consonant_no_hbbhv.source
+        +vowel.source
         +')'
     );
-    newstr = '$1$2$2';
+    newstr_alpa = '$1$2$2$3';
 
-    return string.replace(regexp, newstr);
+    regexp_maha = new RegExp(
+        '('
+            +vowel.source
+            +'r'
+        +')'
+
+        +mahaprana_no_sshShhbbhv.source
+
+        +'('
+        +vowel.source
+        +')'
+    );
+    newstr_maha = '$1$2$2h$3';
+
+    return string.replace(regexp_alpa, newstr_alpa)
+                 .replace(regexp_maha, newstr_maha);
 }
 
 module.exports = double_consonants;

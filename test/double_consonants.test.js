@@ -18,6 +18,8 @@ describe('double_consonants', function() {
         ["brahmA", "brahmA"],
         ["vahniH", "vahniH"],
         ["jAhnavI", "jAhnavI"],
+        ["vartman", "vartman"],
+        ["tryakShAya", "tryakShAya"],
     ];
     pairs.forEach(function(pair) {
         var a = pair[0];
